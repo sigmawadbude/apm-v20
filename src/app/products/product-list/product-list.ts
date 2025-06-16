@@ -31,7 +31,7 @@ export class ProductList implements OnInit, OnDestroy {
   imageWidth = 50;
   imageMargin = 2;
   showImage = signal<boolean>(false);
-  errorMessage = '';
+  errorMessage = signal('');
   sub!: Subscription;
 
   // Use the new Angular signals feature to perform the filter
@@ -59,7 +59,7 @@ export class ProductList implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.productService.getProducts().subscribe({
       next: (products) => this.products.set(products),
-      error: (err) => (this.errorMessage = err),
+      error: (err) => (this.errorMessage.set(err)),
     });
   }
 
