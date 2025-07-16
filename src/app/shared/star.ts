@@ -1,26 +1,18 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-} from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 
 @Component({
   selector: 'pm-star',
   template: `
     <div
       class="crop"
-      [style.width.px]="cropWidth"
-      [title]="rating"
+      [style.width.px]="cropWidth()"
+      [title]="rating()"
       (click)="onClick()"
     >
-      <div style="width: 75px">
+      <div class="stars">
+        @for (_ of stars; track $index) {
         <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
+        }
       </div>
     </div>
   `,
@@ -29,22 +21,24 @@ import {
       .crop {
         overflow: hidden;
       }
-      div {
+      .stars {
+        width: 75px;
         cursor: pointer;
+      }
+      .fa-star {
+        color: #ffc107;
       }
     `,
   ],
 })
-export class Star implements OnChanges {
-  @Input() rating = 0;
-  cropWidth = 75;
-  @Output() ratingClicked: EventEmitter<string> = new EventEmitter<string>();
+export class Star {
+  rating = input.required<number>();
+  cropWidth = computed(() => (this.rating() * 75) / 5);
+  ratingClicked = output<string>();
 
-  ngOnChanges(): void {
-    this.cropWidth = (this.rating * 75) / 5;
-  }
+  readonly stars = Array(5);
 
   onClick(): void {
-    this.ratingClicked.emit(`The rating ${this.rating} was clicked!`);
+    this.ratingClicked.emit(`The rating ${this.rating()} was clicked!`);
   }
 }
