@@ -2,12 +2,14 @@
 <div class="card">
   <div class="card-header">{{pageTitle}}</div>
   <div class="card-body">
+    <form>
     <div class="row">
       <div class="col-md-2">Filter by:</div>
       <div class="col-md-4">
-        <input type="text" [(ngModel)]="listFilter" />
+        <input type="text" [(ngModel)]="listFilter" name="listFilter" />
       </div>
     </div>
+    </form>
     @if(listFilter()){
     <div class="row">
       <div class="col-md-6">
@@ -32,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          @for(product of filteredProducts(); track product.id){
+          @for(product of products() | filterProducts: listFilter(); track product.id){
           <tr>
             <td>
               @if(showImage()){

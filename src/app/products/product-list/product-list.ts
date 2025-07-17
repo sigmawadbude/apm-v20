@@ -7,6 +7,7 @@ import { ConvertToSpacesPipe } from '../../shared/convert-to-spaces.pipe';
 import { IProduct, ProductService } from '../product';
 import { Star } from '../../shared/star';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { FilterProductsPipe } from '../../pipes/filter-products-pipe';
 
 @Component({
   selector: 'app-product-list',
@@ -17,6 +18,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     LowerCasePipe,
     CurrencyPipe,
     ConvertToSpacesPipe,
+    FilterProductsPipe,
   ],
   templateUrl: './product-list.html',
   styles: [
@@ -49,17 +51,6 @@ export class ProductList {
     ),
     { initialValue: [] }
   );
-
-  filteredProducts = computed(() =>
-    this.performFilter(this.listFilter(), this.products())
-  );
-
-  performFilter(filterBy: string, products: IProduct[]): IProduct[] {
-    const filter = filterBy.toLocaleLowerCase();
-    return products.filter((product) =>
-      product.productName.toLocaleLowerCase().includes(filter)
-    );
-  }
 
   toggleImage(): void {
     this.showImage.set(!this.showImage());
