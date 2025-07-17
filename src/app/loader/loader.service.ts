@@ -2,7 +2,7 @@ import { Injectable, signal, effect } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class LoaderService {
-  private activeRequests = signal(0);
+  readonly activeRequests = signal(0);
   private isPending = signal(false);
   readonly isLoading = signal(false); // Exposed signal for UI
 
