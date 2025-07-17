@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --code-coverage",
     "serve:ssr:apm-v20": "node dist/apm-v20/server/server.mjs"
   },
   "private": true,
