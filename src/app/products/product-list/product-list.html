@@ -1,13 +1,11 @@
+@if(products().length){
 <div class="card">
   <div class="card-header">{{pageTitle}}</div>
   <div class="card-body">
     <div class="row">
       <div class="col-md-2">Filter by:</div>
       <div class="col-md-4">
-        <input
-          type="text"
-          [(ngModel)]="listFilter"
-        />
+        <input type="text" [(ngModel)]="listFilter" />
       </div>
     </div>
     @if(listFilter()){
@@ -18,7 +16,6 @@
     </div>
     }
     <div class="table-responsive">
-      @if(products().length){
       <table class="table">
         <thead>
           <tr>
@@ -65,10 +62,9 @@
           }
         </tbody>
       </table>
-      }
     </div>
   </div>
 </div>
-@if(errorMessage()){
+} @if(errorMessage()){
 <div class="alert alert-danger">Error: {{ errorMessage() }}</div>
 }

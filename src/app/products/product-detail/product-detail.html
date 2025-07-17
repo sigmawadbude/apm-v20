@@ -1,6 +1,6 @@
+@if(product()){
 <div class="card">
   <div class="card-header">{{pageTitle + ': ' + product()?.productName}}</div>
-  @if(product()){
   <div class="card-body">
     <div class="row">
       <div class="col-md-8">
@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  }
+
   <div class="card-footer">
     <button
       class="btn btn-outline-secondary"
@@ -61,3 +61,6 @@
     </button>
   </div>
 </div>
+} @if(errorMessage()){
+<div class="alert alert-danger">Error: {{ errorMessage() }}</div>
+}

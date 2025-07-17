@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-import { catchError, Observable, throwError } from "rxjs";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { catchError, delay, Observable, throwError } from 'rxjs';
 
 export interface IProduct {
   id: string;
@@ -27,7 +27,9 @@ export class ProductService {
   }
 
   getProduct(id: string): Observable<IProduct | undefined> {
-    return this.http.get<IProduct>(`${this.productUrl}/${id}`);
+    return this.http
+      .get<IProduct>(`${this.productUrl}/${id}`)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {

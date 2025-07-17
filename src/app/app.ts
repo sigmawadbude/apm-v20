@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { LoaderComponent } from './loader/loader.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, LoaderComponent],
   template: `<nav class="navbar navbar-expand navbar-light bg-light">
       <a class="navbar-brand">{{ pageTitle }}</a>
       <ul class="nav nav-pills">
@@ -25,6 +26,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
       </ul>
     </nav>
     <div class="container">
+      <app-loader />
       <router-outlet></router-outlet>
     </div>`,
   styles: [
