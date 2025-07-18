@@ -1,10 +1,26 @@
-<div>
-  <img [src]="'/images/' + cake.imageFile" [alt]="cake.name + ' cake'">
-  <button>Add to Cart</button>
-  <div>Featured</div>
-  <div>On Sale</div>
-  <div>
-    <p>{{ cake.name }}</p>
-    <p>{{ cake.price }}</p>
+<div [ngClass]="[combinedStyles]">
+  <img
+    [src]="'/images/' + cake().imageFile"
+    [alt]="cake().name + ' cake'"
+    class="w-full"
+  />
+  <button
+    class="w-full bg-[#FECFC9] hover:bg-[#F0C0C0] text-black py-3 text-xs uppercase before:content-['+_'] font-bold"
+  >
+    Add to Cart
+  </button>
+  @if(cake().featured){
+  <div class="bg-gray-700 absolute top-[100px] left-0 p-2 text-white">
+    Featured
+  </div>
+  } @if(cake().onSale){
+  <div class="bg-gray-700 absolute top-[150px] left-0 p-2 text-white">
+    On Sale
+  </div>
+  }
+
+  <div class="flex flex-row py-2">
+    <p class="text-1xl flex-grow font-extrabold">{{ cake().name }}</p>
+    <p>{{ cake().price }}</p>
   </div>
 </div>

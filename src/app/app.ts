@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { Header } from './header/header';
 import { Cake } from './cake/cake';
-import { on } from 'events';
 import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Cake, NgFor],
+  imports: [Header, Cake],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

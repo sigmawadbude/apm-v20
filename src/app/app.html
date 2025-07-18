@@ -1,4 +1,8 @@
 <app-header />
-<section>
-  <app-cake  *ngFor="let cake of cakes" [cake]="cake"/>
+<section class="flex flex-row flex-wrap justify-center gap-1">
+  @for(cake of cakes; track cake) {
+  <div class="box-border w-1/4 p-4">
+    <app-cake [cake]="cake" />
+  </div>
+  }
 </section>
